@@ -76,18 +76,7 @@ Because none of my commits *modified* the `WatchlistEntry` block (I only added a
 
 ### Final commit history
 
-```
-fix: update WatchlistEntry film_id to UUID after main branch refactor
-feat: sort watchlist by date added, newest first
-fix: add missing WatchlistEntry.film relationship
-test: add nonexistent-film test for add_to_watchlist
-feat: prevent duplicate watchlist entries
-fix: rename save_to_watchlist to add_to_watchlist per naming convention
-fix: update film retrieval method to use db.session.get in collection and watchlist services
-feat: add watchlist model and add_to_watchlist endpoint
-```
-
-Eight commits, each one logical change, all conventional (`feat/fix/test`), no merge commits. The original bundled first commit ("added watchlist model and endpoint fixed a bug more changes") was reworded to `feat: add watchlist model and add_to_watchlist endpoint` during an interactive rebase, and the `Co-Authored-By` trailers were stripped in the same pass.
+See the `git log --oneline` screenshot above. Each commit is one logical change, all conventional (`feat`/`fix`/`test`/`docs`), with no merge commits — the branch is rebased, not merged. The original bundled first commit ("added watchlist model and endpoint fixed a bug more changes") was reworded to `feat: add watchlist model and add_to_watchlist endpoint` during an interactive rebase, and the `Co-Authored-By` trailers were stripped in the same pass.
 
 ## PR Description
 
