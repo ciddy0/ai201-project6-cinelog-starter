@@ -2,16 +2,11 @@
 
 ## AI Usage
 
-I used AI (Claude Code) at several points, always verifying its output against the actual code:
+I used Claude Code a few ways here:
 
-- **Codebase orientation.** Before reading the review comments I had it summarize `models.py`, `services/collection_service.py`, and `tests/test_collection.py` — the naming convention (`verb_to_noun`), how dedup is done (`filter_by(...).first()` → raise a typed error before insert), and the test fixture pattern (`app` / `sample_user` / `sample_film`, `with app.app_context()`). I confirmed each claim by reading the files directly.
-- **Understanding `add_to_collection()` for Comment 2.** I had it walk through the dedup path and what the function returns on a duplicate (it *raises*, it does not silently no-op), then wrote my own `add_to_watchlist()` guard rather than having AI write it.
-- **Stress-testing the design arguments (Comments 4 & 5).** After drafting each position I asked, as a devil's advocate, "what's the strongest counterargument a careful reviewer would raise, and what tradeoff am I not acknowledging?"
-  - *Comment 4:* the pushback was that my draft leaned on growth arguments and hand-waved privacy — specifically that a watchlist can reveal genuinely sensitive interests (health, sexuality, religion) and that "most users are happy to share" is an untested assumption. I changed my final position from a flat "keep `public=True`" to a **conditional** one — public is only defensible *with* pre-first-save disclosure and a one-tap private toggle, and absent those the default should flip to private — and I added the sensitive-content concession explicitly.
-  - *Comment 5:* the stress test surfaced that "recency is intuitive" alone is weak; the stronger, codebase-grounded argument is **consistency with `get_collection()`**, which already sorts newest-first. I promoted that to the decisive point in my final response.
-- **Verification, not just generation.** AI helped me notice that the original `get_watchlist()` was never actually exercised (the `entry.film` relationship was missing), and I confirmed that independently by running the original code. I also used it to sanity-check that the final commit messages follow conventional-commit format, then verified the log myself.
-
-The reasoning in Comments 4 and 5 is my own; AI was used to attack my drafts, not to author them.
+- **Getting oriented.** I had it summarize `collection_service.py` and `test_collection.py` so I could match the existing dedup and test patterns, then checked the files myself before trusting it.
+- **Poking holes in my arguments.** For Comments 4 and 5 I wrote my own position first, then asked it to play devil's advocate — "what's the strongest counterargument here?" That's what pushed me to add the sensitive-content concession in Comment 4 and to lead with the consistency-with-`get_collection()` point in Comment 5. The reasoning is mine; I just used it to stress-test.
+- **Commit messages.** Like we were told in the last class, I used AI to help write the commit messages in conventional format, then read every one myself before committing to make sure it actually matched the change.
 
 ## Comment 1 — Rename
 
