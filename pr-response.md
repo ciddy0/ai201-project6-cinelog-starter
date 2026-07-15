@@ -76,7 +76,9 @@ Because none of my commits *modified* the `WatchlistEntry` block (I only added a
 
 ### Final commit history
 
-See the `git log --oneline` screenshot above. Each commit is one logical change, all conventional (`feat`/`fix`/`test`/`docs`), with no merge commits — the branch is rebased, not merged. The original bundled first commit ("added watchlist model and endpoint fixed a bug more changes") was reworded to `feat: add watchlist model and add_to_watchlist endpoint` during an interactive rebase, and the `Co-Authored-By` trailers were stripped in the same pass.
+![git log --oneline showing the rebased feature/watchlist history](gitlog.png)
+
+Each commit is one logical change, all conventional (`feat`/`fix`/`test`/`docs`), with no merge commits in the branch — the branch is rebased, not merged. The original bundled first commit ("added watchlist model and endpoint fixed a bug more changes") was reworded to `feat: add watchlist model and add_to_watchlist endpoint` during an interactive rebase, and the `Co-Authored-By` trailers were stripped in the same pass.
 
 ## PR Description
 
